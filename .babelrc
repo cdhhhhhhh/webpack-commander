@@ -1,0 +1,25 @@
+{
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "corejs": 3,
+                "useBuiltIns": "usage"
+                // targets: {
+                //         "browsers": ["last 1 Chrome versions"]
+                //   },
+            }
+        ],
+        [
+            "@babel/preset-typescript",
+            {
+                "allExtensions": true
+            }
+        ]
+    ],
+    "plugins": [
+        [
+            "@babel/plugin-transform-runtime"
+        ]
+    ]
+}
