@@ -13,7 +13,13 @@ config
     .end()
     .output.path(path.resolve(__dirname, path.resolve("dist")))
     .filename("[name].[hash].js")
-    .end();
+    .end()
+    .watch(true)
+    .watchOptions({
+        ignored: /node_modules/,
+        aggregateTimeout: 300,
+        poll:1000
+    });
 
 config.plugin("clean").use(CleanWebpackPlugin).end();
 config.devServer
@@ -23,18 +29,12 @@ config.devServer
     .hot(true)
     .https(false)
     .disableHostCheck(true)
-    .open(true)
     .proxy({
         "/api": {
             target: "http://localhost:9092",
         },
     })
-    .watch(true)
-    .watchOptions({
-        ignored: /node_modules/,
-        aggregateTimeout: 300,
-        poll:1000
-    });
+
 let webpackConfig = config.toConfig();
 findSync(path.resolve("config")).forEach((item) => {
     webpackConfig = merge(webpackConfig, item);
@@ -45,7 +45,12 @@ let webpackDevConfig = compiler.options.devServer;
 
 const server = new WebpackDevServer(
     compiler,
-    Object.assign(webpackDevConfig, {})
+    Object.assign(webpackDevConfig, {
+        before(){
+            console.log('sss');
+            
+        }
+    })
 );
 server.listen(8080);
 

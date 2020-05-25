@@ -15,7 +15,8 @@
             {
                 "allExtensions": true
             }
-        ]
+        ],
+        "@babel/preset-react"
     ],
     "plugins": [
         [

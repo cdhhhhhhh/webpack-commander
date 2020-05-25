@@ -2,7 +2,11 @@ import "./style.css";
 import "./style1.less";
 import "./style2.scss";
 import _ from "lodash";
-
+import axios from 'axios'
+axios.get('/api/info').then(()=>{
+    console.log('sss');
+    
+})
 // const print = require("./print.js")(() => {
 //     console.log("aaa");
 // });
